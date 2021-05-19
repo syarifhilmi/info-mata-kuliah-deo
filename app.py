@@ -21,7 +21,7 @@ class MataKuliah(db.Model):
         return self
 
 
-class TodoSchema(ModelSchema):
+class MataKuliahSchema(ModelSchema):
     class Meta(ModelSchema.Meta):
         model = MataKuliah
         sqla_session = db.session
@@ -30,13 +30,13 @@ class TodoSchema(ModelSchema):
     nama_mk = fields.String(required=True)
     sks = fields.Number(required=True)
 
-
+#Route
 @app.route('/matkul', methods=['GET'])
 def index():
-    get_todos = MataKuliah.query.all()
-    todo_schema = TodoSchema(many=True)
-    todos = todo_schema.dump(get_todos)
-    return make_response(jsonify({"todos": todos}))
+    get_matakuliah = MataKuliah.query.all()
+    matakuliah_schema = MataKuliahSchema(many=True)
+    matakuliah = matakuliah_schema.dump(get_matakuliah)
+    return make_response(jsonify({"matakuliah": matakuliah}))
 
 if __name__ == "__main__":
     app.run(debug=True)
