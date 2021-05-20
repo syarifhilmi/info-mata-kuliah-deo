@@ -19,6 +19,11 @@ Install depedensi yang dibutuhkan
 ```bash
 $ pip install -r requirements.txt
 ```
+Untuk menjalankan server di local
+```bash
+$ flask run
+```
+Secara default flask akan berjalan di localhost:5000
 ## Endpoint API
 Mengambil data info mata kuliah (kode,nama mata kuliah, sks,) per semester berdasarkan tahun dan prodi <br>
 **GET** ```localhost:5000/info-mata-kuliah/<prodi>/<tahun> ```<br>
