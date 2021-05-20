@@ -8,6 +8,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:@localhost:3306/in
 db = SQLAlchemy(app)
 
 # Model
+# Sebagai cetak biru dari tabel di database SQL
 class MataKuliah14(db.Model):
     __tablename__ = "mk_2014"
     kode = db.Column(db.String(7), primary_key=True,)
@@ -17,7 +18,7 @@ class MataKuliah14(db.Model):
 class Kurikulum14(db.Model):
     __tablename__ = "kurikulum_2014"
     id_prodi = db.Column(db.Integer, db.ForeignKey('prodi.id_prodi'),primary_key=True,)
-    kode = db.Column(db.String(7),db.ForeignKey('mk_2014_2016.kode'),)
+    kode = db.Column(db.String(7),db.ForeignKey('mk_2014.kode'),)
     semester = db.Column(db.Integer)
 
 class MataKuliah16(db.Model):
@@ -29,7 +30,7 @@ class MataKuliah16(db.Model):
 class Kurikulum16(db.Model):
     __tablename__ = "kurikulum_2016"
     id_prodi = db.Column(db.Integer, db.ForeignKey('prodi.id_prodi'),primary_key=True,)
-    kode = db.Column(db.String(7),db.ForeignKey('mk_2014_2016.kode'),)
+    kode = db.Column(db.String(7),db.ForeignKey('mk_2016.kode'),)
     semester = db.Column(db.Integer)
 
 class MataKuliah19(db.Model):
@@ -41,7 +42,7 @@ class MataKuliah19(db.Model):
 class Kurikulum19(db.Model):
     __tablename__ = "kurikulum_2019"
     id_prodi = db.Column(db.Integer, db.ForeignKey('prodi.id_prodi'),primary_key=True,)
-    kode = db.Column(db.String(7),db.ForeignKey('mk_2014_2016.kode'),)
+    kode = db.Column(db.String(7),db.ForeignKey('mk_2019.kode'),)
     semester = db.Column(db.Integer)
 
 
@@ -50,6 +51,8 @@ class Prodi(db.Model):
     id_prodi = db.Column(db.Integer, primary_key=True,)
     nama_prodi = db.Column(db.String(50))
 
+
+# Model Schema berguna untuk memungkinkan return JSON dari Python object dari SQLAlchemy
 class MataKuliahSchema(ModelSchema):
     class Meta(ModelSchema.Meta):
         fields = ('kode','nama_mk','sks','semester')
@@ -62,7 +65,8 @@ class KurikulumSchema(ModelSchema):
     class Meta(ModelSchema.Meta):
         model = Kurikulum14
 
-#Controller
+# Controller
+# Controller berguna sebagai bussiness logic antara model database dengan route
 class MataKuliahController :
     
     def getKurikulum14(prodi):
@@ -190,7 +194,8 @@ class KurikulumController :
         else :
             return False
 
-#Route
+# Route
+# deklarasi Route API
 @app.route('/info-mata-kuliah/<prodi>/<tahun>', methods=['GET'])
 def index(prodi,tahun):
     checkProdi = ProdiController.checkProdi(prodi)
