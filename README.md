@@ -1,5 +1,12 @@
 # info-mata-kuliah-deo
 ## Setup
+**Database**<br>
+Terlebih dahulu, import sql ke MySQL, pada pengujian mengunakan XAMPP. Jika MySQL nya default dari XAMPP tidak ada perubahan, tanpa mengubah kodingan, sudah bisa terhubung, namun bila ada setting khusus, bisa diubah di baris ke 7 file app.py <br>
+```'mysql+pymysql://root:@localhost:3306/info_mata_kuliah'```<br>
+dengan format<br>
+```'mysql+pymysql://<username>:<password>@localhost: <database port>/<database name>'```<br>
+<br>
+**Python**<br>
 Disarankan menjalankan program di virtual environment python untuk meminimalisir error karena beda versi framework atau library <br>
 Di sini dicontohkan menggunakan virtualenvwrapper, pertama, membuat environment baru
 ```bash
