@@ -22,5 +22,5 @@ $ pip install -r requirements.txt
 ## Endpoint API
 Mengambil data info mata kuliah (kode,nama mata kuliah, sks,) per semester berdasarkan tahun dan prodi <br>
 **GET** ```localhost:5000/info-mata-kuliah/<prodi>/<tahun> ```<br>
-contoh penerapan<br>
+contoh penggunaan<br>
 **GET** ```localhost:5000/info-mata-kuliah/informatika/2016 ```<br>
